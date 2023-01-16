@@ -1,0 +1,9 @@
+keys:
+  - &hosts:
+    - &polis age1easztw0jvh52z99a6qteesh3c6qg604344nxyf7wgwvtd4d44s2qkk0jq3
+
+creation_rules:
+  - path_regex: machines/common/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *polis
