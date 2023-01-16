@@ -1,9 +1,4 @@
-{ inputs, pkgs, ... }:
-{
-  imports = [
-    ./global
-    ./features/gnome
-    ./features/vscode
-  ];
+{ inputs, pkgs, ... }: {
+  imports = [ ./global ./features/gnome ./features/vscode ];
 
 }

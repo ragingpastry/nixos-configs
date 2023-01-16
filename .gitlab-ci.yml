@@ -1,0 +1,17 @@
+---
+stages:
+  - lint
+
+variables:
+  NIXOS_VERSION: "unstable"
+
+nixfmt:
+  stage: lint
+  image: nixos/nix:latest
+  before_script:
+    - nix-channel --add https://nixos.org/channels/nixos-${NIXOS_VERSION} nixos
+    - nix-channel --update
+    - nix-env -iA nixos.nixpkgs-fmt
+  script:
+    - nixpkgs-fmt --check .
+

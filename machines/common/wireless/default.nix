@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
 
   sops.secrets.wireless = {
     sopsFile = ../secrets.yaml;
@@ -14,12 +13,8 @@
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
     '';
     environmentFile = config.sops.secrets.wireless.path;
-    
-    networks = {
-      "@home_ssid@" = {
-        psk = "@home_psk@";
-      };
-    };
+
+    networks = { "@home_ssid@" = { psk = "@home_psk@"; }; };
 
     # Imperative
     allowAuxiliaryImperativeNetworks = true;

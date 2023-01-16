@@ -1,11 +1,8 @@
-{ pkgs, inputs, lib, config, ... }:
-{
+{ pkgs, inputs, lib, config, ... }: {
   nix = {
     settings = {
-      substituters = [
-        "https://cache.m7.rs"
-        "https://nix-community.cachix.org"
-      ];
+      substituters =
+        [ "https://cache.m7.rs" "https://nix-community.cachix.org" ];
       trusted-public-keys = [
         "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -28,6 +25,7 @@
 
     # Map registries to channels
     # Very useful when using legacy commands
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
+      config.nix.registry;
   };
 }

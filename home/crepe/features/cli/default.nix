@@ -1,20 +1,14 @@
-{ pkgs, ... }:
-{
-    imports = [
-        ./git.nix
-    ];
+{ pkgs, ... }: {
+  imports = [ ./git.nix ];
 
-    home.packages = with pkgs; [
-        jq
-        vim
-    ];
+  home.packages = with pkgs; [ jq vim ];
 
-    programs.zsh = {
-        enable = true;
-        oh-my-zsh = {
-            enable = true;
-            plugins = [ "git" ];
-            theme = "robbyrussell";
-        };
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "robbyrussell";
     };
+  };
 }

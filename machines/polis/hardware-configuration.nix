@@ -4,37 +4,42 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ 
-        (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-    boot = {
-      initrd = {
-        availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-        kernelModules = [ "dm-snapshot" ];
-        luks.devices.luksRoot = {
-          device = "/dev/disk/by-uuid/551acb4d-6174-4deb-a687-8fc1767aa1a7";
-          preLVM = true;
-        };
-      };
-      kernelModules = [ "kvm-intel" ];
-      loader = {
-        efi.canTouchEfiVariables = true;
-        systemd-boot.enable = true;
-        efi.efiSysMountPoint = "/boot";
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
+      kernelModules = [ "dm-snapshot" ];
+      luks.devices.luksRoot = {
+        device = "/dev/disk/by-uuid/551acb4d-6174-4deb-a687-8fc1767aa1a7";
+        preLVM = true;
       };
     };
-
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/67140ace-b706-48d1-bbd4-11a3cf35e0a0";
-      fsType = "ext4";
+    kernelModules = [ "kvm-intel" ];
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+      efi.efiSysMountPoint = "/boot";
     };
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A399-FF3D";
-      fsType = "vfat";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/67140ace-b706-48d1-bbd4-11a3cf35e0a0";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/A399-FF3D";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 
@@ -46,7 +51,8 @@
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
 }

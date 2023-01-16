@@ -1,16 +1,13 @@
 { pkgs, config, lib, outputs, ... }:
-let ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
-{
+let
+  ifTheyExist = groups:
+    builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in {
   users.mutableUsers = false;
   users.users.crepe = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [
-      "wheel"
-      "video"
-      "audio"
-    ] ++ ifTheyExist [
+    extraGroups = [ "wheel" "video" "audio" ] ++ ifTheyExist [
       "network"
       "wireshark"
       "i2c"

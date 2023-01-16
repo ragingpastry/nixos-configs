@@ -7,30 +7,27 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
-in
-{
+in {
 
-    hardware = {
-        nvidia = {
-            package = config.boot.kernelPackages.nvidiaPackages.beta;
-            modesetting.enable = true;
-            powerManagement.enable = true;
+  hardware = {
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      modesetting.enable = true;
+      powerManagement.enable = true;
 
-            prime = {
-                offload.enable = true;
-                intelBusId = "PCI:0:2:0";
-                nvidiaBusId = "PCI:1:0:0";
-            };
-        };
-        opengl.enable = true;
+      prime = {
+        offload.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
+    opengl.enable = true;
+  };
 
-    boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
-    environment.systemPackages = with pkgs; [
-        nvidia-offload
-    ];
+  environment.systemPackages = with pkgs; [ nvidia-offload ];
 
-    services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
 }

@@ -18,14 +18,12 @@
       inherit (self) outputs;
       supportedSystems = [ "x86_64-linux" ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in
-    rec {
+    in rec {
 
       overlays = import ./overlays;
 
-      packages = forAllSystems (system:
-        import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
-      );
+      packages = forAllSystems
+        (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
 
       devShells = forAllSystems (system: {
         default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };

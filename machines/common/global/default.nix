@@ -1,6 +1,5 @@
 # This file (and the global directory) holds config that i use on all hosts
-{ lib, inputs, outputs, ... }:
-{
+{ lib, inputs, outputs, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./nix.nix
@@ -16,9 +15,7 @@
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-    };
+    config = { allowUnfree = true; };
   };
 
   programs.fuse.userAllowOther = true;
