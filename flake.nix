@@ -18,7 +18,10 @@
       inherit (self) outputs;
       supportedSystems = [ "x86_64-linux" ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in rec {
+    in
+    rec {
+
+      homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays;
 

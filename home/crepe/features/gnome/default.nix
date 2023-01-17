@@ -4,7 +4,12 @@ let
     url = "https://apod.nasa.gov/apod/image/2212/Makemakemoon100mile2000px.jpg";
     sha256 = "1vp89lcwsgk6mj98vzbaw7l8v76f4njf3gzaq2dqh7rxdabhv6lr";
   };
-in {
+in
+{
+
+  imports = [
+    ./font.nix
+  ];
 
   home = {
 
@@ -17,8 +22,9 @@ in {
         zsh
         gnomeExtensions.dash-to-panel
         gnomeExtensions.dash-to-dock
+        gnome.gnome-tweaks
       ] ++ lib.optional osConfig.services.tailscale.enable
-      gnomeExtensions.tailscale-status;
+        gnomeExtensions.tailscale-status;
 
   };
 
@@ -35,8 +41,17 @@ in {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
+      monospace-font-name = config.fontProfiles.monospace.family;
     };
     "org/gnome/desktop/background" = { picture-uri = wallpaper; };
+  };
+
+  gtk = {
+    enable = true;
+    font = {
+      name = config.fontProfiles.regular.family;
+      size = 12;
+    };
   };
 
 }

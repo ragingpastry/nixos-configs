@@ -1,5 +1,7 @@
 { inputs, lib, pkgs, config, outputs, ... }: {
-  imports = [ ../features/cli ];
+  imports = [
+    ../features/cli
+  ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = { config = { allowUnfree = true; }; };
 
