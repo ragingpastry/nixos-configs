@@ -21,11 +21,12 @@
     in
     rec {
 
+      homeManagerModules = import ./modules/home-manager;
+
       overlays = import ./overlays;
 
-      packages = forAllSystems (system:
-        import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
-      );
+      packages = forAllSystems
+        (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
 
       devShells = forAllSystems (system: {
         default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };

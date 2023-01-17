@@ -7,26 +7,33 @@ let
 in
 {
 
+  imports = [
+    ./font.nix
+  ];
+
   home = {
 
-    packages = with pkgs; [
-      firefox
-      google-chrome
-      spotify
-      discord
-      zsh
-      gnomeExtensions.dash-to-panel
-      gnomeExtensions.dash-to-dock
-    ] ++ lib.optional osConfig.services.tailscale.enable gnomeExtensions.tailscale-status;
+    packages = with pkgs;
+      [
+        firefox
+        google-chrome
+        spotify
+        discord
+        zsh
+        gnomeExtensions.dash-to-panel
+        gnomeExtensions.dash-to-dock
+        gnome.gnome-tweaks
+      ] ++ lib.optional osConfig.services.tailscale.enable
+        gnomeExtensions.tailscale-status;
 
   };
 
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = [
-        "dash-to-panel@jderose9.github.com"
-      ] ++ lib.optional osConfig.services.tailscale.enable "tailscale-status@maxgallup.github.com";
+      enabled-extensions = [ "dash-to-panel@jderose9.github.com" ]
+        ++ lib.optional osConfig.services.tailscale.enable
+        "tailscale-status@maxgallup.github.com";
     };
     "org/gnome/desktop/wm/preferences" = {
       "button-layout" = "appmenu:minimize,maximize,close";
@@ -34,9 +41,16 @@ in
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
+      monospace-font-name = config.fontProfiles.monospace.family;
     };
-    "org/gnome/desktop/background" = {
-      picture-uri = wallpaper;
+    "org/gnome/desktop/background" = { picture-uri = wallpaper; };
+  };
+
+  gtk = {
+    enable = true;
+    font = {
+      name = config.fontProfiles.regular.family;
+      size = 12;
     };
   };
 
