@@ -9,7 +9,7 @@
     ../../profiles/virtualization/docker.nix
     ../../profiles/gnome.nix
     ../../profiles/nvidia-RTX-A2000.nix
-    ../../profiles/cac.nix
+    ../../profiles/work
   ];
 
   boot = { kernelPackages = pkgs.linuxPackages_latest; };
