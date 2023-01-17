@@ -29,12 +29,27 @@ in
 
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "text/html" = "firefox/desktop";
+    };
+    defaultApplications = {
+      "text/html" = "firefox/desktop";
+      "x-scheme-handler/http" = "firefox/desktop";
+      "x-scheme-handler/https" = "firefox/desktop";
+      "x-scheme-handler/about" = "firefox/desktop";
+      "x-scheme-handler/unknown" = "firefox/desktop";
+    };
+  };
+
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [ "dash-to-panel@jderose9.github.com" ]
         ++ lib.optional osConfig.services.tailscale.enable
         "tailscale-status@maxgallup.github.com";
+      favorite-apps = [ "org.gnome.Nautilus.desktop" "discord.desktop" "spotify.desktop" "code.desktop" "org.gnome.Console.desktop" "firefox.desktop" ];
     };
     "org/gnome/desktop/wm/preferences" = {
       "button-layout" = "appmenu:minimize,maximize,close";
