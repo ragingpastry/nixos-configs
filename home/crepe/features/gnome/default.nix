@@ -19,6 +19,7 @@ in
         google-chrome
         spotify
         discord
+        sonixd
         zsh
         gnomeExtensions.dash-to-panel
         gnomeExtensions.dash-to-dock
@@ -44,6 +45,14 @@ in
       monospace-font-name = config.fontProfiles.monospace.family;
     };
     "org/gnome/desktop/background" = { picture-uri = wallpaper; };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "launch terminal";
+      binding = "<Super>Return";
+      command = "kgx";
+    };
   };
 
   gtk = {
