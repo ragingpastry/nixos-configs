@@ -1,9 +1,15 @@
 keys:
   - &hosts:
+    - &konishi age18dqxcqq3zhl9r85zqdjnj2zqxudds7wae8gjctd6z5qcpafcxdxskq46s6
     - &polis age1easztw0jvh52z99a6qteesh3c6qg604344nxyf7wgwvtd4d44s2qkk0jq3
 
 creation_rules:
+  - path_regex: machines/konishi/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *konishi
   - path_regex: machines/common/secrets.ya?ml$
     key_groups:
     - age:
       - *polis
+      - *konishi

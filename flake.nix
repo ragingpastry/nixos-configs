@@ -38,6 +38,12 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./machines/polis ];
         };
+
+        # VPS
+        konishi = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./machines/konishi ];
+        };
       };
 
       homeConfigurations = {
@@ -46,6 +52,13 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/crepe/polis.nix ];
+        };
+
+        # VPS
+        "crepe@konishi" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/crepe/konishi.nix ];
         };
       };
 

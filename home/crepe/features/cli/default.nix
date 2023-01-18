@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [ ./git.nix ];
 
-  home.packages = with pkgs; [ jq vim ];
+  home.packages = with pkgs; [ jq vim glab ];
 
   programs.zsh = {
     enable = true;
