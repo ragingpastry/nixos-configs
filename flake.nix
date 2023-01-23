@@ -9,9 +9,14 @@
 
     sops-nix.url = "github:mic92/sops-nix";
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-generators, ... }@inputs:
     let
       inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs elem;
@@ -26,8 +31,11 @@
       overlays = import ./overlays;
 
       packages = forAllSystems
-        (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
-
+        (system:
+          import ./pkgs {
+            pkgs = nixpkgs.legacyPackages.${system};
+          }
+        );
       devShells = forAllSystems (system: {
         default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
       });
@@ -44,6 +52,13 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./machines/konishi ];
         };
+
+        # VPS 2
+        carter-zimmerman = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./machines/carter-zimmerman ];
+        };
+
       };
 
       homeConfigurations = {
@@ -59,6 +74,13 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/crepe/konishi.nix ];
+        };
+
+        # VPS 2
+        "crepe@carter-zimmerman" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/crepe/carter-zimmerman.nix ];
         };
       };
 
