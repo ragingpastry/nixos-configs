@@ -10,6 +10,7 @@
       vscodevim.vim
       bbenoist.nix
       hashicorp.terraform
+      golang.go
       dracula-theme.theme-dracula
       ms-vsliveshare.vsliveshare
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -18,6 +19,12 @@
         publisher = "redhat";
         version = "1.1.34";
         sha256 = "UyAbQpe2KpoBZVk1AwfEr3BoLPwHxps284l0ZzjMQDE=";
+      }
+      {
+        name = "hcl";
+        publisher = "hashicorp";
+        version = "0.3.2";
+        sha256 = "cxF3knYY29PvT3rkRS8SGxMn9vzt56wwBXpk2PqO0mo=";
       }
     ];
     userSettings = {

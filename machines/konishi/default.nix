@@ -5,6 +5,8 @@
     ../common/global
     ../common/users/crepe
 
+    ../../profiles/tailscale-exit-node.nix
+
   ];
 
   boot = { kernelPackages = pkgs.linuxPackages_latest; };
@@ -52,6 +54,7 @@
       group = "nginx";
     };
   };
+
   networking.enableIPv6 = false;
 
 
