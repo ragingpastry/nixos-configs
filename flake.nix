@@ -30,12 +30,31 @@
 
       overlays = import ./overlays;
 
+      #packages.x86_64-linux = {
+      #  carter-zimmerman-kexec = nixos-generators.nixosGenerate {
+      #    system = "x86_64-linux";
+      #    modules = [
+      #      ./machines/carter-zimmerman
+      #    ];
+      #    format = "kexec-bundle";
+      #  };
+      #};
       packages = forAllSystems
-        (system:
-          import ./pkgs {
-            pkgs = nixpkgs.legacyPackages.${system};
-          }
-        );
+        (system: {
+          carter-zimmerman-kexec = nixos-generators.nixosGenerate {
+            system = system;
+            modules = [
+              ./machines/carter-zimmerman
+            ];
+            format = "kexec-bundle";
+          };
+        });
+      #packages = forAllSystems
+      #  (system:
+      #    import ./pkgs {
+      #      pkgs = nixpkgs.legacyPackages.${system};
+      #    }
+      #  );
       devShells = forAllSystems (system: {
         default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
       });
