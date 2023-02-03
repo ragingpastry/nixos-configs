@@ -22,6 +22,9 @@
       #theme = "re5et";
     };
     initExtraBeforeCompInit = ''
+      function bastion() {
+        glab ci run --repo https://gitlab.90cos.cdl.af.mil/90cos/cmn/iac/infra/windows-bastion.git --branch master --variables DEPLOYMENT:$1
+      }
       function vpn () {
         if [[ "$1" == "up" ]]; then
           sudo ${pkgs.tailscale}/bin/tailscale up --exit-node=konishi --reset;

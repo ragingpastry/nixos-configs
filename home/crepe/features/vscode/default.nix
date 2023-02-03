@@ -26,6 +26,12 @@
         version = "0.3.2";
         sha256 = "cxF3knYY29PvT3rkRS8SGxMn9vzt56wwBXpk2PqO0mo=";
       }
+      {
+        name = "opa";
+        publisher = "tsandall";
+        version = "0.12.1";
+        sha256 = "HoFX0pNTbL4etkmZVvezmL0vKE54QZtIPjcAp2/llqs=";
+      }
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
