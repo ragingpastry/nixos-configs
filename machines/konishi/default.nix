@@ -55,6 +55,9 @@
     };
   };
 
+  # This does nothing but we will leave it here just incase
+  # ipv6 is actually disabled in hardware-configuration.nix
+  # under kernelParams
   networking.enableIPv6 = false;
 
 

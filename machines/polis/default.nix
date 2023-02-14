@@ -16,10 +16,10 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking.hostName = "polis";
-  #networking.extraHosts =
-  #  ''
-  #    15.200.154.149    development-keycloak.blacklabel.dso.mil
-  #  '';
+  networking.extraHosts =
+    ''
+      10.108.188.149 grafana.bigbang.dev
+    '';
   time.timeZone = "America/Chicago";
 
   system.stateVersion = "22.05";
