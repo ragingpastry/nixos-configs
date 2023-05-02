@@ -9,8 +9,6 @@
     ../../profiles/virtualization/docker.nix
     ../../profiles/virtualization/libvirtd.nix
     ../../profiles/gnome.nix
-    ../../profiles/nvidia-RTX-A2000.nix
-    ../../profiles/work
   ];
 
   boot = { kernelPackages = pkgs.linuxPackages_latest; };
@@ -21,7 +19,7 @@
     sudo.u2fAuth = true;
   };
 
-  networking.hostName = "polis";
+  networking.hostName = "pattern-juggler";
   networking.nameservers = [ "1.1.1.1" ];
   #networking.extraHosts =
   #  ''

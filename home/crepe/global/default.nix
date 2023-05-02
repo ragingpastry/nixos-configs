@@ -3,7 +3,10 @@
     ../features/cli
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
-  nixpkgs = { config = { allowUnfree = true; }; };
+  nixpkgs = {
+    config = { allowUnfree = true; };
+    overlays = builtins.attrValues outputs.overlays;
+  };
 
   nix = {
     package = lib.mkDefault pkgs.nix;

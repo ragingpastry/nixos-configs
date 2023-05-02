@@ -1,6 +1,7 @@
 { inputs, config, lib, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./plg.nix
 
     ../common/global
     ../common/users/crepe
@@ -8,6 +9,7 @@
     ../../profiles/tailscale-exit-node.nix
 
   ];
+
 
   boot = { kernelPackages = pkgs.linuxPackages_latest; };
 

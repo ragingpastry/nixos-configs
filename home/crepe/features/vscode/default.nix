@@ -32,6 +32,13 @@
         version = "0.12.1";
         sha256 = "HoFX0pNTbL4etkmZVvezmL0vKE54QZtIPjcAp2/llqs=";
       }
+      {
+        name = "remote-containers";
+        publisher = "ms-vscode-remote";
+        version = "0.280.0";
+        sha256 = "6XMmhvUyR+GZjPKjbuY93S+pe7BlwQzG4MNusBA1pJI=";
+      }
+
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;

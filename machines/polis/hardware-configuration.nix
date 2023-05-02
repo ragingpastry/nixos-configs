@@ -7,6 +7,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
+    extraModprobeConfig = "options kvm_intel nested=1";
     initrd = {
       availableKernelModules = [
         "xhci_pci"
