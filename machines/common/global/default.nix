@@ -14,7 +14,7 @@
   };
 
   nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = builtins.attrValues outputs.overlays ++ [ inputs.awsvpnclient.overlay ];
     config = { allowUnfree = true; };
   };
 

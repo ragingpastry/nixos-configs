@@ -14,7 +14,12 @@
     '';
     environmentFile = config.sops.secrets.wireless.path;
 
-    networks = { "@home_ssid@" = { psk = "@home_psk@"; }; };
+    networks = {
+      "@home_ssid@" = { psk = "@home_psk@"; };
+      "@jessica_ssid@" = { psk = "@jessica_psk@"; };
+      "@dimas_ssid@" = { psk = "@dimas_psk@"; };
+      "@bobcat_ssid@" = { psk = "@bobcat_psk@"; };
+    };
 
     # Imperative
     allowAuxiliaryImperativeNetworks = true;

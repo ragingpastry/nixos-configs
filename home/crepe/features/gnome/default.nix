@@ -19,8 +19,10 @@ in
         google-chrome
         spotify
         discord
+        vlc
         sonixd
         zsh
+        yubioath-flutter
         gnomeExtensions.dash-to-panel
         gnomeExtensions.dash-to-dock
         gnome.gnome-tweaks

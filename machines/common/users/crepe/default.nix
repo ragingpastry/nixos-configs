@@ -5,6 +5,7 @@ let
 in
 {
   users.mutableUsers = false;
+  programs.zsh.enable = true;
   users.users.crepe = {
     isNormalUser = true;
     shell = pkgs.zsh;
