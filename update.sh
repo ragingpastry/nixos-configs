@@ -9,16 +9,24 @@ NC='\033[0m'
 
 # Define functions
 error() {
-  echo -e "${RED}Error: $1${NC}" >&2
+  echo -e "🚫 ${RED}Error: $1${NC}" >&2
   exit 1
 }
 
 warn() {
-  echo -e "${YELLOW}Warning: $1${NC}" >&2
+  echo -e "️❗ ${YELLOW}Warning: $1${NC}" >&2
 }
 
 success() {
-  echo -e "${GREEN}$1${NC}" >&2
+  echo -e "🎉 ${GREEN}$1${NC}" >&2
+}
+
+run_cmd() {
+  if [[ $debug ]]; then
+    $@
+  else
+    $@ > /dev/null 2>&1
+  fi;
 }
 
 parse_hosts() {
@@ -34,9 +42,9 @@ parse_hosts() {
 }
 
 reboot_required() {
-    diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules,systemd}) <(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules,systemd}) \
-      || return 0 \
-      && return 1
+    diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules,systemd}) <(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules,systemd}) > /dev/null 2>&1 \
+      && return 1 \
+      || return 0
 }
 
 update_flake() {
@@ -49,16 +57,18 @@ update_flake() {
     cd pkgs || { error "Failed to cd to the 'pkgs' directory!"; exit 1; }
 
     # Find all default.nix files with "fetchFromGitHub"
-    for f in $(find . -name "default.nix" -type f -exec grep -H "fetchFromGitHub" {} \; | cut -d: -f1); do
+    for f in $(find . -name "default.nix" -type f -exec grep -H "fetchFromGitHub" -m1 {} \; | cut -d: -f1); do
       # Get the directory containing the default.nix file and remove the ./ prefix
       folder=$(dirname "$f" | sed 's|^\./||')
     
       # Run nix-update with the directory name
-      echo "Running nix-update for $folder"
-      nix-update "$folder" || { echo "Error running nix-update in $folder" >&2; exit 1; }
+      #echo "Running nix-update for $folder"
+      printf "🚀 Running nix-update for ${folder}\n"
+      run_cmd nix-update "$folder"  || { echo "Error running nix-update in $folder" >&2; exit 1; }
     done
 
     # Change back to the original directory, even if there was an error
+    cd "${DIR}"
     trap 'cd "$DIR"' ERR
 }
 
