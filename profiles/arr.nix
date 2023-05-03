@@ -25,6 +25,7 @@
   };
   services.exportarr.sonarr = {
     enable = true;
+    additionalMetrics = true;
     config = "/var/lib/sonarr/.config/NzbDrone/config.xml";
   };
   services.exportarr.sabnzbd = {

@@ -7,7 +7,6 @@
     ../common/users/crepe
 
     ../../profiles/tailscale-exit-node.nix
-    ../../profiles/arr.nix
 
   ];
 

@@ -94,6 +94,7 @@
         targets = [
           "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
           "konishi:9002"
+          "conjoiner:9003"
           "conjoiner:9002"
           "conjoiner:9707"
           "conjoiner:9708"
