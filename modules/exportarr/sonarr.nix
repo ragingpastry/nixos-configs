@@ -10,6 +10,7 @@ let
     then "--config ${cfg.config}"
     else throw "Must define either api_key or api_key_file or config";
   interface = lib.optionalString (cfg.listen_interface != "") "--interface ${cfg.listen_interface}";
+  additionalMetrics = lib.optionalString cfg.additionalMetrics "--enable-additional-metrics true";
 in
 {
   config = lib.mkIf cfg.enable {
@@ -17,7 +18,7 @@ in
       description = "sonarr Exportarr";
       wantedBy = [ "multi-user.target" ];
       script = ''
-        ${pkgs.exportarr}/bin/exportarr sonarr --port ${cfg.listen_port} --url ${cfg.url} ${api_key_fragment} ${interface}
+        ${pkgs.exportarr}/bin/exportarr sonarr --port ${cfg.listen_port} --url ${cfg.url} ${api_key_fragment} ${interface} ${additionalMetrics}
       '';
     };
   };

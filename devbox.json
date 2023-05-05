@@ -1,9 +1,9 @@
 {
   "packages": [
-    "github:nix-community/nix-init",
     "nix-update",
     "sops",
-    "nixpkgs-fmt"
+    "nixpkgs-fmt",
+    "shellcheck"
   ],
   "shell": {
     "init_hook": null

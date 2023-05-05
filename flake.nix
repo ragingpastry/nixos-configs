@@ -15,10 +15,11 @@
     };
 
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
+    arc.url = "github:arcnmx/nixexprs";
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, arc, ... }@inputs:
     let
       inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs elem;

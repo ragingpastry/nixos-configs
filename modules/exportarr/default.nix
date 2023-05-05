@@ -33,6 +33,14 @@ let
     '';
   };
 
+  additional_metrics_opt = mkOption {
+    type = types.bool;
+    default = false;
+    description = ''
+      Enable additional metric collection (more resource intensive).
+    '';
+  };
+
   listen_interface_opt = mkOption {
     type = types.str;
     default = "";
@@ -47,6 +55,7 @@ in
     api_key = api_key_opt;
     api_key_file = api_key_file_opt;
     config = config_opt;
+    additionalMetrics = additional_metrics_opt;
     url = mkOption {
       type = types.str;
       default = "http://localhost:8686";
@@ -69,6 +78,7 @@ in
     api_key = api_key_opt;
     api_key_file = api_key_file_opt;
     config = config_opt;
+    additionalMetrics = additional_metrics_opt;
     url = mkOption {
       type = types.str;
       default = "http://localhost:9797";
@@ -91,6 +101,7 @@ in
     api_key = api_key_opt;
     api_key_file = api_key_file_opt;
     config = config_opt;
+    additionalMetrics = additional_metrics_opt;
     url = mkOption {
       type = types.str;
       default = "http://localhost:7878";
@@ -113,6 +124,7 @@ in
     api_key = api_key_opt;
     api_key_file = api_key_file_opt;
     config = config_opt;
+    additionalMetrics = additional_metrics_opt;
     url = mkOption {
       type = types.str;
       default = "http://localhost:8989";
@@ -135,6 +147,7 @@ in
     api_key = api_key_opt;
     api_key_file = api_key_file_opt;
     config = config_opt;
+    additionalMetrics = additional_metrics_opt;
     url = mkOption {
       type = types.str;
       default = "http://localhost:9696";
@@ -157,6 +170,7 @@ in
     api_key = api_key_opt;
     api_key_file = api_key_file_opt;
     config = config_opt;
+    additionalMetrics = additional_metrics_opt;
     url = mkOption {
       type = types.str;
       default = "http://localhost:8080";

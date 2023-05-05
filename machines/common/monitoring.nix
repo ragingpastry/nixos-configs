@@ -34,8 +34,12 @@
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [ "systemd" ];
+        enabledCollectors = [ "systemd" "lnstat" ];
         port = 9002;
+      };
+      systemd = {
+        enable = true;
+        port = 9003;
       };
     };
   };
@@ -44,7 +48,7 @@
     enable = true;
     interfaces = {
       tailscale0 = {
-        allowedTCPPorts = [ 9002 ];
+        allowedTCPPorts = [ 9002 9003 ];
       };
     };
   };

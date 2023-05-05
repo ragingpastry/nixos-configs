@@ -25,6 +25,7 @@
   };
   services.exportarr.sonarr = {
     enable = true;
+    additionalMetrics = true;
     config = "/var/lib/sonarr/.config/NzbDrone/config.xml";
   };
   services.exportarr.sabnzbd = {
@@ -143,8 +144,10 @@
 
   };
 
+  # Media group must exist
   users.groups.media = { };
 
+  # Permissions might get all messed up so we need to ensure they are correct.
   systemd.services.media-permissions-fix = {
     description = "Fix permissions on /media";
 
@@ -231,6 +234,7 @@
     };
   };
 
+  # What other logs should we be sucking up?
   services.promtail = {
     configuration = {
       scrape_configs = [{
@@ -244,6 +248,5 @@
         }];
       }];
     };
-    # extraFlags
   };
 }
