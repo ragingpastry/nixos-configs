@@ -5,7 +5,7 @@
 }:
 buildGoModule rec {
   pname = "devbox";
-  version = "0.4.9-dev";
+  version = "0.4.9";
 
   src = fetchFromGitHub {
     owner = "jetpack-io";
