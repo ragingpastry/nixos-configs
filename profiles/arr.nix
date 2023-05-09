@@ -30,7 +30,7 @@
   };
   services.exportarr.sabnzbd = {
     enable = true;
-    config = "/var/lib/sabnzbd/sabnzbd.ini";
+    api_key_file = "${config.sops.secrets.sabnzbd_api_key.path}";
   };
   services.exportarr.prowlarr = {
     enable = true;
@@ -38,6 +38,7 @@
   };
   services.exportarr.radarr = {
     enable = true;
+    additionalMetrics = true;
     config = "/var/lib/radarr/.config/Radarr/config.xml";
   };
 

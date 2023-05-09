@@ -62,6 +62,13 @@
       fsType = "ntfs3";
       options = [ "rw" ];
     };
+  
+  fileSystems."/var/lib/sabnzbd/Downloads" = 
+    {
+      device = "/dev/disk/by-label/sabnzbd";
+      fsType = "ext4";
+      options = [ "noatime" "nodiratime" "discard" ];
+    };
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/34a6de5d-fc30-4737-96cf-bc5b2cb9004d"; }];

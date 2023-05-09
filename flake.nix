@@ -16,15 +16,22 @@
 
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
     arc.url = "github:arcnmx/nixexprs";
+    gomod2nix = {
+      url = "github:tweag/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, arc, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, gomod2nix, arc, ... }@inputs:
     let
       inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs elem;
       inherit (self) outputs;
       supportedSystems = [ "x86_64-linux" ];
+      nixpkgsFor = forAllSystems (system: import nixpkgs
+        { inherit system; overlays = [ gomod2nix.overlays.default ]; }
+      );
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
     rec {
@@ -33,35 +40,36 @@
 
       overlays = import ./overlays;
 
+      pkgs = import nixpkgs {
+        overlays = [
+          gomod2nix.overlays.default
+        ];
+      };
 
-      #packages.x86_64-linux = {
-      #  carter-zimmerman-kexec = nixos-generators.nixosGenerate {
-      #    system = "x86_64-linux";
-      #    modules = [
-      #      ./machines/carter-zimmerman
-      #    ];
-      #    format = "kexec-bundle";
-      #  };
-      #};
-      packages = forAllSystems
-        (system: {
-          carter-zimmerman-kexec = nixos-generators.nixosGenerate {
-            system = system;
-            modules = [
-              ./machines/carter-zimmerman
-            ];
-            format = "kexec-bundle";
+      packages = forAllSystems (
+        system: let
+          pkgs = nixpkgsFor.${system};
+        in {
+          nixwarp = pkgs.buildGoApplication {
+            pname = "nixwarp";
+            version = "0.1.1";
+            src = ./cli.;
+            modules = ./cli/gomod2nix.toml;
           };
-        });
+          default = nixpkgsFor.${system}.nixwarp;
+        }
+      );
+      #defaultPackage = packages.${nixpkgs.lib.currentSystem}.nixwarp;
+      #defaultPackage = forAllSystems (system: self.packages."${system}".nixwarp);
       #packages = forAllSystems
       #  (system:
       #    import ./pkgs {
       #      pkgs = nixpkgs.legacyPackages.${system};
       #    }
       #  );
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
-      });
+      #devShells = forAllSystems (system: {
+      #  default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
+      #});
 
       nixosConfigurations = rec {
         # Desktop

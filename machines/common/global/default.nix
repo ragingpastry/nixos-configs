@@ -21,6 +21,8 @@
   programs.fuse.userAllowOther = true;
   hardware.enableRedistributableFirmware = true;
 
+  security.sudo.wheelNeedsPassword = false;
+
   # Increase open file limit for sudoers
   security.pam.loginLimits = [
     {

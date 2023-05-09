@@ -4,7 +4,7 @@ keys:
     - &polis age1easztw0jvh52z99a6qteesh3c6qg604344nxyf7wgwvtd4d44s2qkk0jq3
     - &carter-zimmerman age1y3zqpjp7uj97u0eskfy8gsck72vh5vwgjus8uv3gwnk8z2helpysvex66r
     - &conjoiner age1jyhl6dyx4xmec4e7qnjlc0edhjref7lshc35h8aarwvrvlycka3qjrdnj0
-    - &pattern-juggler age14yyfjf6zqvn09gkqgqcpc5mekugem05amclza20asvnp8734felqhy0hzl
+    - &pattern-juggler age14g8n233nk3p0grkhkfj8qhhnjwgerku98e9z28edr7vmenmzafdqwe8df6
 
 creation_rules:
   - path_regex: machines/konishi/secrets.ya?ml$

@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [ ./git.nix ];
 
-  home.packages = with pkgs; [ jq vim glab awscli fzf devbox direnv ];
+  home.packages = with pkgs; [ jq vim glab awscli fzf devbox direnv nixwarp ];
 
   programs.zsh = {
     enable = true;
@@ -32,6 +32,7 @@
           sudo ${pkgs.tailscale}/bin/tailscale up --exit-node= --reset;
         fi;
       }
+      export EDITOR=$(which vim)
       eval "$(direnv hook zsh)"
     '';
   };

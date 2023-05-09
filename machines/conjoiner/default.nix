@@ -29,6 +29,10 @@
     sopsFile = ./secrets.yaml;
   };
 
+  sops.secrets.sabnzbd_api_key = {
+    sopsFile = ./secrets.yaml;
+  };
+
   sops.secrets.cloudflare_tunnel_overseerr_credentials = {
     sopsFile = ./secrets.yaml;
     owner = "cloudflared";

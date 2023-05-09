@@ -16,7 +16,7 @@ buildGoModule rec {
     hash = "sha256-45ZGHw/u0IkDJSlNaNg9At4rvBU9+CVix8Bp58hE6gk=";
   };
 
-  vendorHash = "";
+  vendorHash = "sha256-vtfrcUKU4ELtJawJGugUxoQEgIZVjNNck8XzOyEWroo=";
   preBuild = ''
     mkdir -p build/ui
     touch build/ui/index.html

@@ -15,6 +15,12 @@
       ms-vsliveshare.vsliveshare
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
+        name = "crystal-lang";
+        publisher = "crystal-lang-tools";
+        version = "0.8.4";
+        sha256 = "hU6g4CqcCxXlhqSKL36vgzX2EJ7fIdbIuPCHbpRW/zE=";
+      }
+      {
         name = "ansible";
         publisher = "redhat";
         version = "1.1.34";
