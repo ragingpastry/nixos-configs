@@ -29,9 +29,6 @@
       inherit (builtins) mapAttrs elem;
       inherit (self) outputs;
       supportedSystems = [ "x86_64-linux" ];
-      nixpkgsFor = forAllSystems (system: import nixpkgs
-        { inherit system; overlays = [ gomod2nix.overlays.default ]; }
-      );
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
     rec {
@@ -39,37 +36,6 @@
       homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays;
-
-      pkgs = import nixpkgs {
-        overlays = [
-          gomod2nix.overlays.default
-        ];
-      };
-
-      packages = forAllSystems (
-        system: let
-          pkgs = nixpkgsFor.${system};
-        in {
-          nixwarp = pkgs.buildGoApplication {
-            pname = "nixwarp";
-            version = "0.1.1";
-            src = ./cli.;
-            modules = ./cli/gomod2nix.toml;
-          };
-          default = nixpkgsFor.${system}.nixwarp;
-        }
-      );
-      #defaultPackage = packages.${nixpkgs.lib.currentSystem}.nixwarp;
-      #defaultPackage = forAllSystems (system: self.packages."${system}".nixwarp);
-      #packages = forAllSystems
-      #  (system:
-      #    import ./pkgs {
-      #      pkgs = nixpkgs.legacyPackages.${system};
-      #    }
-      #  );
-      #devShells = forAllSystems (system: {
-      #  default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
-      #});
 
       nixosConfigurations = rec {
         # Desktop

@@ -1,0 +1,25 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "nix-update": {
+      "last_modified": "",
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#nix-update",
+      "version": ""
+    },
+    "nixpkgs-fmt": {
+      "last_modified": "",
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#nixpkgs-fmt",
+      "version": ""
+    },
+    "shellcheck": {
+      "last_modified": "",
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#shellcheck",
+      "version": ""
+    },
+    "sops": {
+      "last_modified": "",
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#sops",
+      "version": ""
+    }
+  }
+}
