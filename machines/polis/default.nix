@@ -23,10 +23,10 @@
 
   networking.hostName = "polis";
   networking.nameservers = [ "1.1.1.1" ];
-  networking.extraHosts =
-  ''
-    10.15.8.129 gitlab.dev.blacklabel.mil registry.dev.blacklabel.mil
-  '';
+  #networking.extraHosts =
+  #''
+  #  10.15.8.129 gitlab.dev.blacklabel.mil registry.dev.blacklabel.mil
+  #'';
   time.timeZone = "America/Chicago";
 
   system.stateVersion = "22.05";

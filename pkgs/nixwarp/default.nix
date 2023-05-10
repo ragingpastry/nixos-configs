@@ -5,7 +5,7 @@
 
 buildGoModule rec {
   pname = "nixwarp";
-  version = "0.0.1";
+  version = "0.0.3";
 
   src = fetchFromGitHub {
     owner = "ragingpastry";
