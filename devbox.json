@@ -3,8 +3,7 @@
     "nix-update",
     "sops",
     "nixpkgs-fmt",
-    "shellcheck",
-    "github:nix-community/nix-init"
+    "shellcheck"
   ],
   "shell": {
     "init_hook": null

@@ -5,16 +5,16 @@
 
 buildGoModule rec {
   pname = "nixwarp";
-  version = "0.0.3";
+  version = "0.0.4";
 
   src = fetchFromGitHub {
     owner = "ragingpastry";
     repo = "nixwarp";
-    rev = "d869bab0b5cf25834a1cd3c6d9ce244bd98042bf";
-    hash = "sha256-HA4YwNXgQfcZQNnxO+B7FyhQFgU2Y0FB/i5vucBW77o=";
+    rev = "${version}";
+    hash = "sha256-SHwgV5Ykn7BJ5DTAF4yU1aCFgHvYEhLO1Br1ZN7xfGc=";
   };
 
-  vendorHash = "sha256-b01mBpbV10jRxKwoZ4Cx4tMbzz4O+4ESlal9kImOGB4=";
+  vendorHash = "sha256-1L56awuqlaNCrwGNZ6eLCDqpKXD1DLhinP8/rYP+W+0=";
 
   ldflags = [ "-s" "-w" ];
 

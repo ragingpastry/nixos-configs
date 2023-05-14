@@ -56,13 +56,6 @@
       fsType = "vfat";
     };
 
-  fileSystems."/media" =
-    {
-      device = "/dev/disk/by-id/wwn-0x500003964b98123e-part2";
-      fsType = "ntfs3";
-      options = [ "rw" ];
-    };
-  
   fileSystems."/var/lib/sabnzbd/Downloads" = 
     {
       device = "/dev/disk/by-label/sabnzbd";
@@ -72,6 +65,12 @@
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/34a6de5d-fc30-4737-96cf-bc5b2cb9004d"; }];
+
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  networking.hostId = "56b758a0";
+  
+  boot.zfs.extraPools = [ "media" ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
