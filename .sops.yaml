@@ -5,6 +5,7 @@ keys:
     - &carter-zimmerman age1y3zqpjp7uj97u0eskfy8gsck72vh5vwgjus8uv3gwnk8z2helpysvex66r
     - &conjoiner age1jyhl6dyx4xmec4e7qnjlc0edhjref7lshc35h8aarwvrvlycka3qjrdnj0
     - &pattern-juggler age14g8n233nk3p0grkhkfj8qhhnjwgerku98e9z28edr7vmenmzafdqwe8df6
+    - &markedmoose age1a54lzp0n9nqk9a2r2ta5faa5vmfkdgdp9lth322unvf4dgkuuewqk0c02l
 
 creation_rules:
   - path_regex: machines/konishi/secrets.ya?ml$
@@ -23,6 +24,10 @@ creation_rules:
     key_groups:
     - age:
       - *pattern-juggler
+  - path_regex: machines/markedmoose/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *markedmoose
   - path_regex: machines/common/secrets.ya?ml$
     key_groups:
     - age:
@@ -31,3 +36,4 @@ creation_rules:
       - *carter-zimmerman
       - *conjoiner
       - *pattern-juggler
+      - *markedmoose

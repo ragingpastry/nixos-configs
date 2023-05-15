@@ -5,13 +5,13 @@
 }:
 buildGoModule rec {
   pname = "devbox";
-  version = "0.0.0-edge.2023-05-10";
+  version = "0.5.0";
 
   src = fetchFromGitHub {
     owner = "jetpack-io";
     repo = pname;
     rev = version;
-    hash = "sha256-0bNTBIj6dQKyml/etyP7hKMlFU71SSamJa3qtseFwLA=";
+    hash = "sha256-8uyR2eCysitwMvs6z46M/MlpwIZJC5IBXvTrfuaHhHA=";
   };
 
   ldflags = [
