@@ -65,6 +65,12 @@
           modules = [ ./machines/carter-zimmerman ];
         };
 
+        # Landon's laptop
+        markedmoose = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./machines/markedmoose ];
+        };
+
       };
 
       homeConfigurations = {
@@ -105,6 +111,23 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/crepe/carter-zimmerman.nix ];
         };
+
+        # Landon's laptop
+        "crepe@markedmoose" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/crepe/markedmoose.nix ];
+        };
+
+        "landon@markedmoose" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/landon/markedmoose.nix ];
+        };
+
+
+
+
       };
 
     };
