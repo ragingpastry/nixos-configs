@@ -2,7 +2,7 @@
   "packages": [
     "nix-update",
     "sops",
-    "nixpkgs-fmt",
+    "nixpkgs-fmt@latest",
     "shellcheck"
   ],
   "shell": {

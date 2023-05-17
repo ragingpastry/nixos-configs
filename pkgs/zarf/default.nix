@@ -7,16 +7,16 @@
 buildGoModule rec {
   #inherit (source) pname version src vendorHash;
   pname = "zarf";
-  version = "0.26.2";
+  version = "0.26.3";
 
   src = fetchFromGitHub {
     owner = "defenseunicorns";
     repo = "zarf";
     rev = "v${version}";
-    hash = "sha256-45ZGHw/u0IkDJSlNaNg9At4rvBU9+CVix8Bp58hE6gk=";
+    hash = "sha256-gJpXdT0Uj+7UecPPuRphbtbh8v80UztKmiOAP+U7Tpc=";
   };
 
-  vendorHash = "";
+  vendorHash = "sha256-vtfrcUKU4ELtJawJGugUxoQEgIZVjNNck8XzOyEWroo=";
   preBuild = ''
     mkdir -p build/ui
     touch build/ui/index.html

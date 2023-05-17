@@ -39,6 +39,7 @@
       };
       systemd = {
         enable = true;
+        extraFlags = [ "--systemd.collector.enable-ip-accounting" ];
         port = 9003;
       };
     };

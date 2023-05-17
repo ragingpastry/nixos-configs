@@ -16,10 +16,14 @@
 
     awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
     arc.url = "github:arcnmx/nixexprs";
+    gomod2nix = {
+      url = "github:tweag/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, arc, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, gomod2nix, arc, ... }@inputs:
     let
       inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs elem;
@@ -32,36 +36,6 @@
       homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays;
-
-
-      #packages.x86_64-linux = {
-      #  carter-zimmerman-kexec = nixos-generators.nixosGenerate {
-      #    system = "x86_64-linux";
-      #    modules = [
-      #      ./machines/carter-zimmerman
-      #    ];
-      #    format = "kexec-bundle";
-      #  };
-      #};
-      packages = forAllSystems
-        (system: {
-          carter-zimmerman-kexec = nixos-generators.nixosGenerate {
-            system = system;
-            modules = [
-              ./machines/carter-zimmerman
-            ];
-            format = "kexec-bundle";
-          };
-        });
-      #packages = forAllSystems
-      #  (system:
-      #    import ./pkgs {
-      #      pkgs = nixpkgs.legacyPackages.${system};
-      #    }
-      #  );
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
-      });
 
       nixosConfigurations = rec {
         # Desktop
@@ -89,6 +63,12 @@
         carter-zimmerman = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./machines/carter-zimmerman ];
+        };
+
+        # Landon's laptop
+        markedmoose = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./machines/markedmoose ];
         };
 
       };
@@ -131,6 +111,23 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/crepe/carter-zimmerman.nix ];
         };
+
+        # Landon's laptop
+        "crepe@markedmoose" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/crepe/markedmoose.nix ];
+        };
+
+        "landon@markedmoose" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/landon/markedmoose.nix ];
+        };
+
+
+
+
       };
 
     };

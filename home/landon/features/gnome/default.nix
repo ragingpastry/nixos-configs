@@ -22,7 +22,7 @@ in
         vlc
         sonixd
         zsh
-        #yubioath-flutter # broken
+        yubioath-flutter
         gnomeExtensions.dash-to-panel
         gnomeExtensions.dash-to-dock
         gnome.gnome-tweaks

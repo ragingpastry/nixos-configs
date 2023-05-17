@@ -29,6 +29,10 @@
     sopsFile = ./secrets.yaml;
   };
 
+  sops.secrets.sabnzbd_api_key = {
+    sopsFile = ./secrets.yaml;
+  };
+
   sops.secrets.cloudflare_tunnel_overseerr_credentials = {
     sopsFile = ./secrets.yaml;
     owner = "cloudflared";
@@ -41,5 +45,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
+
+
 
 }
