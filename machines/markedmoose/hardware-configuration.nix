@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot = {
@@ -25,18 +26,20 @@
     };
   };
 
-    
-      
+
+
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9bf6dbe0-fc65-43d7-af51-fe6afd543b4f";
+    {
+      device = "/dev/disk/by-uuid/9bf6dbe0-fc65-43d7-af51-fe6afd543b4f";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/460B-4B48";
+    {
+      device = "/dev/disk/by-uuid/460B-4B48";
       fsType = "vfat";
     };
 

@@ -56,7 +56,7 @@
       fsType = "vfat";
     };
 
-  fileSystems."/var/lib/sabnzbd/Downloads" = 
+  fileSystems."/var/lib/sabnzbd/Downloads" =
     {
       device = "/dev/disk/by-label/sabnzbd";
       fsType = "ext4";
@@ -69,7 +69,7 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
   networking.hostId = "56b758a0";
-  
+
   boot.zfs.extraPools = [ "media" ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
