@@ -18,6 +18,7 @@
     package = pkgs.nixUnstable;
     gc = {
       automatic = true;
+      options = "-d";
       dates = "weekly";
     };
 

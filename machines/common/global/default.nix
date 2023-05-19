@@ -21,6 +21,9 @@
   programs.fuse.userAllowOther = true;
   hardware.enableRedistributableFirmware = true;
 
+  # https://discourse.nixos.org/t/how-to-disable-networkmanager-wait-online-service-in-the-configuration-file/19963
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   security.sudo.wheelNeedsPassword = false;
 
   # Increase open file limit for sudoers
