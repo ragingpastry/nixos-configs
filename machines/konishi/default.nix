@@ -7,6 +7,7 @@
     ../common/users/crepe
 
     ../../profiles/tailscale-exit-node.nix
+    ../../profiles/virtualization/docker.nix
 
   ];
 
@@ -24,6 +25,8 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = false;
+  
+
 
   system.stateVersion = "22.11";
 
@@ -59,7 +62,7 @@
   # This does nothing but we will leave it here just incase
   # ipv6 is actually disabled in hardware-configuration.nix
   # under kernelParams
-  networking.enableIPv6 = false;
+  #networking.enableIPv6 = false;
 
 
   #services.nginx = {

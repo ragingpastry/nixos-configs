@@ -11,6 +11,8 @@
     ../../profiles/gnome.nix
     ../../profiles/nvidia-RTX-A2000.nix
     ../../profiles/work
+    ../../profiles/steam.nix
+    ../../profiles/minecraft-server.nix
   ];
 
   boot = { kernelPackages = pkgs.linuxPackages_latest; };
@@ -20,6 +22,18 @@
     login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  # for a WiFi printer
+  services.avahi.openFirewall = true;
+
+  services.flatpak.enable = true;
+
+  networking.firewall = {
+    allowedTCPPorts = [ 19132 19133 25565 ];
+    allowedUDPPorts = [ 19132 4445 25565 41520 19133 ];
+  }; 
 
   networking.hostName = "polis";
   networking.nameservers = [ "1.1.1.1" ];

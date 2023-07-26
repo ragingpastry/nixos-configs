@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    awsvpnclient.url = "github:ymatsiuk/awsvpnclient";
+    awsvpnclient.url = "github:ymatsiuk/awsvpnclient?rev=8bdfd42d893f7e80c5d0044cdb3181bdf3612ff2";
     arc.url = "github:arcnmx/nixexprs";
     gomod2nix = {
       url = "github:tweag/gomod2nix";

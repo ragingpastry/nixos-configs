@@ -2,14 +2,10 @@
   "lockfile_version": "1",
   "packages": {
     "nix-update": {
-      "last_modified": "",
-      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#nix-update",
-      "version": ""
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#nix-update"
     },
     "nixpkgs-fmt": {
-      "last_modified": "",
-      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#nixpkgs-fmt",
-      "version": ""
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#nixpkgs-fmt"
     },
     "nixpkgs-fmt@latest": {
       "last_modified": "2023-05-01T16:53:22Z",
@@ -17,14 +13,10 @@
       "version": "1.3.0"
     },
     "shellcheck": {
-      "last_modified": "",
-      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#shellcheck",
-      "version": ""
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#shellcheck"
     },
     "sops": {
-      "last_modified": "",
-      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#sops",
-      "version": ""
+      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#sops"
     }
   }
 }

@@ -24,7 +24,7 @@
 
     kernelModules = [ ];
     extraModulePackages = [ ];
-    kernelParams = [ "ipv6.disable=1" ];
+    #kernelParams = [ "ipv6.disable=1" ];
 
   };
 
