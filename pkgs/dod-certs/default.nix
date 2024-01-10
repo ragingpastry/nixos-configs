@@ -6,17 +6,17 @@ stdenv.mkDerivation rec {
   src = pkgs.fetchzip {
     url =
       "https://dl.dod.cyber.mil/wp-content/uploads/pki-pke/zip/unclass-certificates_pkcs7_DoD.zip";
-    sha256 = "O0Shnd2F1JRXjzjgAMv6BNAUo+KPzC4wJ2lkpLf5iSc=";
+    sha256 = "QgRw3UPTTXNadkpo5FonQ6hTsQVnk6l/2n2hnLOaL1E=";
   };
 
   nativeBuildInputs = [ pkgs.unzip pkgs.openssl ];
 
   buildPhase = ''
-    openssl pkcs7 -print_certs -in certificates_pkcs7_v5_12_dod_pem.p7b -out certificate.cer
+    openssl pkcs7 -in certificates_pkcs7_v5_13_dod_der.p7b -inform der -print_certs -out dod_CAs.pem
   '';
 
   installPhase = ''
     mkdir $out
-    cp certificate.cer $out/dod-certs.pem
+    cp dod_CAs.pem $out/dod-certs.pem
   '';
 }

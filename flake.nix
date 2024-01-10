@@ -20,6 +20,7 @@
       url = "github:tweag/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    musnix  = { url = "github:musnix/musnix"; };
 
   };
 
@@ -46,7 +47,7 @@
         # Work Laptop
         polis = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./machines/polis ];
+          modules = [ ./machines/polis inputs.musnix.nixosModules.musnix ];
         };
         # Personal Laptop
         pattern-juggler = nixpkgs.lib.nixosSystem {

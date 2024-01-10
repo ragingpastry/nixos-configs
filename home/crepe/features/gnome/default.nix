@@ -26,6 +26,7 @@ in
         gnomeExtensions.dash-to-panel
         gnomeExtensions.dash-to-dock
         gnome.gnome-tweaks
+        yubioath-flutter
       ] ++ lib.optional osConfig.services.tailscale.enable
         gnomeExtensions.tailscale-status;
 

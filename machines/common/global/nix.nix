@@ -16,6 +16,7 @@
       system-features = [ "kvm" "big-parallel" ];
     };
     package = pkgs.nixUnstable;
+    #package = pkgs.nixVersions.nix_2_17;
     gc = {
       automatic = true;
       options = "-d";

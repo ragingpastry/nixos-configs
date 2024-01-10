@@ -22,5 +22,5 @@ in
       hosts;
   };
 
-  security.pam.enableSSHAgentAuth = true;
+  #security.pam.enableSSHAgentAuth = true;
 }

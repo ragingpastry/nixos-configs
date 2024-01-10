@@ -1,10 +1,22 @@
 { pkgs, ... }: {
   imports = [ ./git.nix ];
 
-  home.packages = with pkgs; [ jq vim glab awscli fzf devbox direnv nixwarp ];
+  home.packages = with pkgs; [ jq vim glab awscli fzf devbox direnv nixwarp kubectl fluxcd ];
 
   programs.zsh = {
     enable = true;
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.7.0";
+          sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
+        };
+      }
+    ];
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" ];
@@ -31,6 +43,14 @@
         elif [[ "$1" == "down" ]]; then
           sudo ${pkgs.tailscale}/bin/tailscale up --exit-node= --reset;
         fi;
+      }
+      function beegfiles() {
+        git rev-list --objects --all |
+        git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' |
+        sed -n 's/^blob //p' |
+        sort --numeric-sort --key=2 |
+        cut -c 1-12,41- |
+        $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
       }
       export EDITOR=$(which vim)
       eval "$(direnv hook zsh)"
