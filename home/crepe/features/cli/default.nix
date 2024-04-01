@@ -34,9 +34,6 @@
       #theme = "re5et";
     };
     initExtraBeforeCompInit = ''
-      function bastion() {
-        glab ci run --repo https://gitlab.90cos.cdl.af.mil/90cos/cmn/iac/infra/windows-bastion.git --branch master --variables DEPLOYMENT:$1
-      }
       function vpn () {
         if [[ "$1" == "up" ]]; then
           sudo ${pkgs.tailscale}/bin/tailscale up --exit-node=konishi --reset;
@@ -52,6 +49,7 @@
         cut -c 1-12,41- |
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
       }
+      git="TZ=UTC git"
       export EDITOR=$(which vim)
       eval "$(direnv hook zsh)"
     '';
