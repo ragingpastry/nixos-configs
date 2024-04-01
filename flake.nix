@@ -14,8 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    awsvpnclient.url = "github:ymatsiuk/awsvpnclient?rev=8bdfd42d893f7e80c5d0044cdb3181bdf3612ff2";
-    arc.url = "github:arcnmx/nixexprs";
+    #arc.url = "github:arcnmx/nixexprs";
+    arc.url = "github:arcnmx/nvidia-patch.nix";
     gomod2nix = {
       url = "github:tweag/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +24,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-generators, awsvpnclient, gomod2nix, arc, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-generators, gomod2nix, arc, ... }@inputs:
     let
       inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs elem;

@@ -32,7 +32,6 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
     interfaces = {
       tailscale0 = {
         allowedTCPPorts = [ 80 443 ];

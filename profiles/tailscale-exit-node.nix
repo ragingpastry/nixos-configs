@@ -23,14 +23,14 @@
       status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
       if [ $status = "Running" ]; then
         if [ $exitNodeState = "false" ]; then
-          ${tailscale}/bin/tailscale up --advertise-exit-node
+          authKey="$(cat ${config.sops.secrets.tailscaleAuthKey.path})"
+          ${tailscale}/bin/tailscale up --advertise-exit-node --auth-key "$authKey" --operator crepe
         fi;
         exit 0
       fi
 
       authKey="$(cat ${config.sops.secrets.tailscaleAuthKey.path})"
-
-      ${tailscale}/bin/tailscale up --advertise-exit-node -authkey "$authKey"
+      ${tailscale}/bin/tailscale up --advertise-exit-node --auth-key "$authKey" --operator crepe
     '';
   };
 

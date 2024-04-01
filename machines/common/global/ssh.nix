@@ -23,4 +23,17 @@ in
   };
 
   #security.pam.enableSSHAgentAuth = true;
+
+  services.openssh.ports = [ 22 50022 ];
+  services.openssh.openFirewall = false;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 50022 ];
+    interfaces = {
+      tailscale0 = {
+        allowedTCPPorts = [ 22 ];
+      };
+    };
+  };
 }

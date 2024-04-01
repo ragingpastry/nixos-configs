@@ -112,7 +112,11 @@
     configuration = {
       server.http_listen_port = 3030;
       auth_enabled = false;
-
+      common = {
+        ring = {
+          instance_interface_names = ["tailscale0"];
+        };
+      };
       ingester = {
         lifecycler = {
           address = "127.0.0.1";
