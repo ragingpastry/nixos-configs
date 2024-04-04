@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }: {
+{ inputs, config, lib, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -12,6 +12,7 @@
     ../../profiles/nvidia-RTX-A2000.nix
     ../../profiles/work
     ../../profiles/steam.nix
+    ../../modules/tailscale-proxy
   ];
 
   boot = { kernelPackages = pkgs.linuxPackages_latest; };
@@ -30,6 +31,16 @@
   #hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
   services.jack = {
     jackd.enable = true;
+  };
+
+  sops.secrets.tailscaleProxyAuthKey = {
+    sopsFile = ../common/secrets.yaml;
+    neededForUsers = true;
+  };
+  services.tailscale-proxy = {
+    enable = true;
+    exitNodeIP = "100.102.236.97";
+    environmentFile = config.sops.secrets.tailscaleProxyAuthKey.path;
   };
 
   sound.enable = lib.mkForce false;
