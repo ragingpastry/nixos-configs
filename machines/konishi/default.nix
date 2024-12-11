@@ -1,8 +1,8 @@
 { inputs, config, lib, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./plg.nix
 
-    ../common/monitoring.nix
     ../common/global
     ../common/users/crepe
 
@@ -20,13 +20,12 @@
   services.printing.enable = false;
 
   # Enable sound.
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = false;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.11";
 
   sops.secrets.acme_credentials_file = {
     sopsFile = ./secrets.yaml;

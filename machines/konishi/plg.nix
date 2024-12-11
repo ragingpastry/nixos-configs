@@ -28,7 +28,7 @@
 
   services.nginx = {
     enable = true;
-    defaultListenAddresses = [ "100.104.248.102" ];
+    defaultListenAddresses = [ "100.119.43.98" ];
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;

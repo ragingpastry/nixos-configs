@@ -4,6 +4,12 @@ let
     url = "https://apod.nasa.gov/apod/image/2212/Makemakemoon100mile2000px.jpg";
     sha256 = "1vp89lcwsgk6mj98vzbaw7l8v76f4njf3gzaq2dqh7rxdabhv6lr";
   };
+  firefoxSoundFix = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/31a131649c0bcd9d7d9b87786b3fbb54b4dbe6e0.tar.gz";
+    })
+    { };
+
 in
 {
 
@@ -22,10 +28,9 @@ in
         vlc
         sonixd
         zsh
-        #yubioath-flutter # broken
         gnomeExtensions.dash-to-panel
         gnomeExtensions.dash-to-dock
-        gnome.gnome-tweaks
+        gnome-tweaks
         yubioath-flutter
       ] ++ lib.optional osConfig.services.tailscale.enable
         gnomeExtensions.tailscale-status;

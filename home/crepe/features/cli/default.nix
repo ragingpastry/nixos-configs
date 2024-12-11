@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [ ./git.nix ];
 
-  home.packages = with pkgs; [ jq vim glab awscli fzf devbox direnv nixwarp kubectl fluxcd ];
+  home.packages = with pkgs; [ jq tmux vim glab awscli2 fzf devbox direnv nixwarp kubectl fluxcd ];
 
   programs.zsh = {
     enable = true;

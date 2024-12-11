@@ -10,17 +10,18 @@
     ];
 
   nixpkgs = {
-    overlays = [ inputs.arc.overlays.arc ];
+    overlays = [ inputs.nvidia-patch.overlays.default ];
   };
 
   hardware = {
     nvidia = {
-      package = pkgs.arc.packages.nvidia-patch.override {
-        nvidia_x11 = config.boot.kernelPackages.nvidiaPackages.stable;
-      };
+      #package = pkgs.arc.packages.nvidia-patch.override {
+      #  nvidia_x11 = config.boot.kernelPackages.nvidiaPackages.stable;
+      #};
+      package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.stable);
       modesetting.enable = false;
     };
-    opengl.enable = true;
+    graphics.enable = true;
   };
 
   boot = {
@@ -66,7 +67,7 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/34a6de5d-fc30-4737-96cf-bc5b2cb9004d"; }];
 
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.forceImportRoot = false;
   networking.hostId = "56b758a0";
 

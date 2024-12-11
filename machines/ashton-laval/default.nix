@@ -9,7 +9,7 @@
     ../../profiles/virtualization/docker.nix
     ../../profiles/virtualization/libvirtd.nix
     ../../profiles/gnome.nix
-    ../../profiles/nvidia-RTX-A2000.nix
+    #../../profiles/nvidia-RTX-A2000.nix
     ../../profiles/work
     ../../profiles/steam.nix
     ../../modules/tailscale-proxy
@@ -223,7 +223,7 @@
     allowedUDPPorts = [ 19132 4445 25565 41520 19133 ];
   };
 
-  networking.hostName = "polis";
+  networking.hostName = "ashton-laval";
   #networking.nameservers = [ "1.1.1.1" ];
   networking.extraHosts =
     ''
@@ -236,5 +236,5 @@
     '';
   time.timeZone = "America/Chicago";
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "24.11";
 }

@@ -6,4 +6,5 @@
   nixwarp = pkgs.callPackage ./nixwarp { };
   sonarr-search-missing = pkgs.callPackage ./sonarr-search-missing { };
   #assumeeksrole = pkgs.callPackage ./assumeeksrole { };
+  ccidfix = pkgs.callPackage ./ccid { };
 }

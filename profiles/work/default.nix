@@ -2,7 +2,7 @@
   imports = [
     ./cac.nix
     ./appgate.nix
-#    ./vmware-client.nix
+    #    ./vmware-client.nix
     ./common.nix
   ];
 }

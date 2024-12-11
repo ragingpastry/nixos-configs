@@ -1,11 +1,12 @@
 keys:
   - &hosts:
-    - &konishi age18dqxcqq3zhl9r85zqdjnj2zqxudds7wae8gjctd6z5qcpafcxdxskq46s6
+    - &konishi age1fp7my75rqggna577yl72wnry3k3wzgd4h4c7geug742dkcw6ydcq47efwn
     - &polis age1easztw0jvh52z99a6qteesh3c6qg604344nxyf7wgwvtd4d44s2qkk0jq3
     - &carter-zimmerman age1y3zqpjp7uj97u0eskfy8gsck72vh5vwgjus8uv3gwnk8z2helpysvex66r
     - &conjoiner age1jyhl6dyx4xmec4e7qnjlc0edhjref7lshc35h8aarwvrvlycka3qjrdnj0
     - &pattern-juggler age14g8n233nk3p0grkhkfj8qhhnjwgerku98e9z28edr7vmenmzafdqwe8df6
     - &markedmoose age1a54lzp0n9nqk9a2r2ta5faa5vmfkdgdp9lth322unvf4dgkuuewqk0c02l
+    - &ashton-laval age1v7aq0n79epyp7kxtg87kdgvdyw68hqgk2fe4f0zv0m3rf0xkds7scxyky4
 
 creation_rules:
   - path_regex: machines/konishi/secrets.ya?ml$
@@ -37,3 +38,14 @@ creation_rules:
       - *conjoiner
       - *pattern-juggler
       - *markedmoose
+      - *ashton-laval
+  - path_regex: machines/common/wireless_secrets.ya?ml$
+    key_groups:
+    - age:
+      - *polis
+      - *konishi
+      - *carter-zimmerman
+      - *conjoiner
+      - *pattern-juggler
+      - *markedmoose
+      - *ashton-laval

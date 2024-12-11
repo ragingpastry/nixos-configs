@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
 
   sops.secrets.wireless = {
-    sopsFile = ../secrets.yaml;
+    sopsFile = ../wireless_secrets.yaml;
     neededForUsers = true;
   };
 
@@ -12,13 +12,14 @@
     extraConfig = ''
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
     '';
-    environmentFile = config.sops.secrets.wireless.path;
+    secretsFile = config.sops.secrets.wireless.path;
 
     networks = {
-      "@home_ssid@" = { psk = "@home_psk@"; };
-      "@jessica_ssid@" = { psk = "@jessica_psk@"; };
-      "@dimas_ssid@" = { psk = "@dimas_psk@"; };
-      "@bobcat_ssid@" = { psk = "@bobcat_psk@"; };
+      "MySpectrumWiFiC6-5G" = { psk = "ext:home_psk"; };
+      "Tequila House" = { pskRaw = "ext:jessica_psk"; };
+      "MyOptimum 64a789" = { pskRaw = "ext:dimas_psk"; };
+      "bobcat" = { pskRaw = "ext:bobcat_psk"; };
+      "Saturn" = { pskRaw = "ext:saturn_psk"; };
     };
 
     # Imperative

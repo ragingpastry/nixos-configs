@@ -30,6 +30,7 @@
       systemd-boot.enable = true;
       efi.efiSysMountPoint = "/boot";
     };
+    # kernelParams = [ "modprobe.blacklist=dvb_usb_rtl28xxu" ];
   };
 
   fileSystems."/" = {

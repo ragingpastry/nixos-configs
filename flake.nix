@@ -15,12 +15,14 @@
     };
 
     #arc.url = "github:arcnmx/nixexprs";
-    arc.url = "github:arcnmx/nvidia-patch.nix";
+    #arc.url = "github:arcnmx/nvidia-patch.nix";
+    nvidia-patch.url = "github:icewind1991/nvidia-patch-nixos";
+    nvidia-patch.inputs.nixpkgs.follows = "nixpkgs";
     gomod2nix = {
       url = "github:tweag/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    musnix  = { url = "github:musnix/musnix"; };
+    musnix = { url = "github:musnix/musnix"; };
 
   };
 
@@ -72,6 +74,13 @@
           modules = [ ./machines/markedmoose ];
         };
 
+        # New Work Laptop
+        # Work Laptop
+        ashton-laval = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./machines/ashton-laval inputs.musnix.nixosModules.musnix ];
+        };
+
       };
 
       homeConfigurations = {
@@ -88,6 +97,14 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/crepe/polis.nix ];
+          overlay = import ./overlays;
+        };
+
+        # New Work Laptop
+        "crepe@ashton-laval" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/crepe/ashton-laval.nix ];
           overlay = import ./overlays;
         };
 

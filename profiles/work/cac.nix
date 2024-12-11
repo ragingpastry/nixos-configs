@@ -4,13 +4,14 @@
     acsccid
     opensc
     pcsctools
-    libusb
+    libusb1
     pcsclite
     p11-kit
     pcscliteWithPolkit.out
   ];
 
   services.pcscd.enable = true;
+  services.pcscd.plugins = [ pkgs.ccidfix ];
 
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
